@@ -1,4 +1,4 @@
-name: Deploy React App to GitHub Pages
+name: Deploy React App to GH-Pages
 
 on:
   push:
@@ -10,32 +10,28 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout code
-      - uses: actions/checkout@v3
+      # 1. Grab your code
+      - name: Checkout repo
+        uses: actions/checkout@v3
 
-      # Set up Node & install deps
-      - name: Use Node.js 18
+      # 2. Set up Node.js
+      - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Install dependencies
-        run: npm ci
 
-      # Build (this also runs `postbuild`)
-      - name: Build production bundle
+      # 3. Install deps (npm install rather than npm ci)
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Build your app
+      - name: Build
         run: npm run build
 
-      # Deploy the build/ folder to gh-pages branch
-      - name: Deploy to GitHub Pages
+      # 5. Deploy to github pages
+      - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          # This built-in token has write access to this repo
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          # Folder to publish
-          publish_dir: build
-          # Branch to push the static output to
+          personal_token: ${{ secrets.PAGES_PAT }}    # your PAT
           publish_branch: gh-pages
-          # Create as an orphan branch so it's completely rebuilt every time
-          force_orphan: true
-          # Remove old files (keep the branch clean)
-          keep_files: false
+          publish_dir: ./build
