@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <!-- absolute path from the gh-pages root -->
-    <meta http-equiv="refresh" content="0; URL=/pf/index.html" />
-    <script>
-      // JS fallback
-      window.location.replace('/pf/index.html');
-    </script>
-  </head>
-  <body></body>
+<head>
+  <meta charset="utf-8" />
+  <!-- immediately redirect to /pf/ -->
+  <meta http-equiv="refresh" content="0; url=/pf/" />
+  <script>
+    // in case the meta tag doesn’t fire, same in JS
+    window.location.replace('/pf/');
+  </script>
+  <title>Redirecting…</title>
+</head>
+<body></body>
 </html>
