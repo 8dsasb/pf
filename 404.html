@@ -2,21 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Redirecting…</title>
+  <!-- immediately redirect to /pf/ -->
+  <meta http-equiv="refresh" content="0; url=/pf/" />
   <script>
-    // base path of SPA
-    const base = '/pf';
-    // full pathname 
-    let full = window.location.pathname + window.location.search + window.location.hash;
-    // strip off the leading "/pf" so we don't duplicate
-    if (full.startsWith(base)) {
-      full = full.slice(base.length);
-    }
-    // rebuild the URL pointing at index.html with the original path appended
-    window.location.replace(base + full);
+    // in case the meta tag doesn’t fire, same in JS
+    window.location.replace('/pf/');
   </script>
-  <!-- fallback for non-JS environments -->
-  <meta http-equiv="refresh" content="0;url=/pf/" />
+  <title>Redirecting…</title>
 </head>
 <body></body>
 </html>
